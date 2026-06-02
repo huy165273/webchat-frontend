@@ -25,7 +25,7 @@ export function Sidebar() {
 
   useEffect(() => {
     if (session?.accessToken) {
-      fetch("http://localhost:8080/api/conversations", {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"}/api/conversations`, {
         headers: { Authorization: `Bearer ${session.accessToken}` }
       })
       .then(res => res.json())
@@ -48,7 +48,7 @@ export function Sidebar() {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:8080/api/conversations/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"}/api/conversations/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${session.accessToken}`,
@@ -69,7 +69,7 @@ export function Sidebar() {
   const deleteConversation = async (id: number) => {
     if (!session?.accessToken) return;
     try {
-      await fetch(`http://localhost:8080/api/conversations/${id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"}/api/conversations/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${session.accessToken}` }
       });

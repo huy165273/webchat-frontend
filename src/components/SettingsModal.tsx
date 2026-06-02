@@ -29,7 +29,7 @@ export function SettingsModal({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (open && session?.accessToken) {
-      fetch("http://localhost:8080/api/users/me", {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"}/api/users/me`, {
         headers: { Authorization: `Bearer ${session.accessToken}` }
       })
         .then(async res => {
@@ -52,7 +52,7 @@ export function SettingsModal({ children }: { children: React.ReactNode }) {
   const handleProfileSave = async () => {
     setProfileMessage("");
     try {
-      const res = await fetch("http://localhost:8080/api/users/profile", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"}/api/users/profile`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export function SettingsModal({ children }: { children: React.ReactNode }) {
   const handleSettingsSave = async () => {
     setSettingsMessage("");
     try {
-      const res = await fetch("http://localhost:8080/api/users/settings", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"}/api/users/settings`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

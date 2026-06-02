@@ -34,7 +34,7 @@ export function ChatArea() {
   useEffect(() => {
     let isMounted = true;
     if (session?.accessToken && activeConversationId) {
-      fetch(`http://localhost:8080/api/chat/${activeConversationId}/messages`, {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"}/api/chat/${activeConversationId}/messages`, {
         headers: { Authorization: `Bearer ${session.accessToken}` }
       })
       .then(res => res.json())
@@ -69,7 +69,7 @@ export function ChatArea() {
     if (!activeConversationId) {
       setIsStreaming(true);
       try {
-        const res = await fetch("http://localhost:8080/api/conversations", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"}/api/conversations`, {
           method: "POST",
           headers: { 
             Authorization: `Bearer ${session.accessToken}`,
@@ -94,7 +94,7 @@ export function ChatArea() {
     setIsStreaming(true);
 
     try {
-      const response = await fetch(`http://localhost:8080/api/chat/${activeConversationId}/stream`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"}/api/chat/${activeConversationId}/stream`, {
         method: "POST",
         headers: { 
           Authorization: `Bearer ${session.accessToken}`,
