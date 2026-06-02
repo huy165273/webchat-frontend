@@ -12,7 +12,7 @@ import { LogOut } from "lucide-react";
 import { useChatStore } from "@/store/chatStore";
 
 export function SettingsModal({ children }: { children: React.ReactNode }) {
-  const { data: session } = useSession();
+  const { data: session } = useSession() as any;
   const { setConversations, setPendingMessage } = useChatStore();
   const [open, setOpen] = useState(false);
   
@@ -141,7 +141,7 @@ export function SettingsModal({ children }: { children: React.ReactNode }) {
               </div>
               <Slider 
                 value={temperature} 
-                onValueChange={setTemperature} 
+                onValueChange={(val) => setTemperature(val as number[])} 
                 max={1} 
                 step={0.1} 
               />

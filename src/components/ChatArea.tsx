@@ -10,7 +10,7 @@ import { useParams, useRouter } from "next/navigation";
 import TextareaAutosize from "react-textarea-autosize";
 
 export function ChatArea() {
-  const { data: session } = useSession();
+  const { data: session } = useSession() as any;
   const { 
     activeConversationId, setActiveConversationId, 
     messages, setMessages, addMessage, updateLastMessage, 

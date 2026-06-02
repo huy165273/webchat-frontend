@@ -16,7 +16,7 @@ import {
 import { SettingsModal } from "@/components/SettingsModal";
 
 export function Sidebar() {
-  const { data: session } = useSession();
+  const { data: session } = useSession() as any;
   const { conversations, setConversations, activeConversationId } = useChatStore();
   const router = useRouter();
   
